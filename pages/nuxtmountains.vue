@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Nuxt Mountains</h1>
-    <h2>Uses the fetch hook to load mountains from Nuxt's example api</h2>
+    <p>Uses the fetch hook to load mountains from Nuxt's example api.</p>
     <p>For static hosting, the fetch hook is only called during page generation, and the result is then cached for use on the client.</p>
     <ul>
       <li v-for="mountain of mountains" :key="mountain.slug">{{ mountain.title }}</li>

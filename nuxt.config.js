@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -37,17 +39,17 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
   ],
-
+  axios: {
+    // extra config e.g
+    // BaseURL: 'https://link-to-API'
+    baseURL: process.env.API_URL,
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios'
   ],
 
-  axios: {
-    // extra config e.g
-    // BaseURL: 'https://link-to-API'
-    baseURL: process.env.API_URL
-  },
+  
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
