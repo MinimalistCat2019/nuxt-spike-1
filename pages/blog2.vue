@@ -1,17 +1,22 @@
 <template>
-  <div>
-    <ul v-for="blog in blogs" :key="blog.content._meta.deliveryKey">
-      <NuxtLink :to="`${blog.content._meta.name}`">
-        <li>{{ blog.content._meta.name }}</li>
-      </NuxtLink>
-    </ul>
-  </div>
+    <div>
+        <h1>Amplience Blog</h1>
+        <p>Uses the fetch hook to load blog posts from Amplience's Filter endpoint.</p>
+        <ul>
+            <li v-for="item of response.responses" :key="item.content._meta.deliveryKey">{{item.content._meta.name}}</li>
+        </ul>
+    </div>
 </template>
+
 <script>
-export default {
-  async asyncData({ params, redirect }) {
-    const blogs = await fetch(
-       `${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
+    export default {
+        data() {
+            return {
+                response: {}
+            }
+        },
+        async fetch() {
+            this.response = await fetch( `${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -33,11 +38,8 @@ export default {
                         format: "inlined"
                     }                    
                 })
-            }
-    )
-    .then((res) => res.json())
-    .then(res => res.responses)
-    return {blogs}
-  }
-}
+            })
+            .then(res => res.json())
+        }
+    }
 </script>

@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'static',
@@ -42,14 +40,15 @@ export default {
   axios: {
     // extra config e.g
     // BaseURL: 'https://link-to-API'
-    baseURL: process.env.API_URL,
+    baseURL: process.env.BASE_URL,
+    proxy: true
+    // baseURL: 'https://eu-west-1.cdv2.content.amplience-turing.net',
   },
+
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     '@nuxtjs/axios'
   ],
-
-  
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
