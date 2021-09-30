@@ -1,14 +1,15 @@
 <template>
   <div>
-    <h1>Name: {{ name }}</h1>
-    <h2>Category: {{ category }}</h2>
-    <p>Description: {{ description }}</p>
+    <h1>{{ name }}</h1>
+    <h2>{{ category }}</h2>
+    <p>{{ description }}</p>
     <NuxtLink to="/">Back to Blogs</NuxtLink>
   </div>
 </template>
 <script>
 export default {
   async asyncData({ params, redirect }) {
+    // console.log("params: ", params)
     const blogs = await fetch(
        `${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
                 method: "POST",
@@ -38,15 +39,14 @@ export default {
     .then(res => res.responses)
 
     const filteredBlog = blogs.filter(
-      (blog) => 
-        blog.content._meta.name.toLowerCase() === params.name && 
-        blog.content._meta.deliveryKey === params.content._meta.deliveryKey
-    )
-    if (filteredBlog) {
+      (blog) => blog.content._meta.name === params.blog)
+
+    // console.log("filteredBlog: ",filteredBlog[0])
+    if (filteredBlog.length === 1) {
       return {
-      name: filteredBlog.content._meta.name,
-      category: filteredBlog.content.category,
-      description: filteredBlog.content.description
+      name: filteredBlog[0].content._meta.name,
+      category: filteredBlog[0].content.category,
+      description: filteredBlog[0].content.description
       }
     } else {
       redirect('/')

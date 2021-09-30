@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul v-for="blog in blogs" :key="blog.content._meta.deliveryKey">
+    <ul v-for="blog in blogs.responses" :key="blog.content._meta.deliveryKey">
       <NuxtLink :to="`${blog.content._meta.name}`">
         <li>{{ blog.content._meta.name }}</li>
       </NuxtLink>
@@ -36,7 +36,7 @@ export default {
             }
     )
     .then((res) => res.json())
-    .then(res => res.responses)
+    // .then(res => res.responses)
     return {blogs}
   }
 }
