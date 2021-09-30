@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1>{{ this.name }}</h1>
+    <h1>{{ this.deliveryId }}</h1>
   </div>
 </template>
 <script>
   export default {
     async asyncData({ params }) {
-      const name = await params.name
-      return { name }
+      const deliveryId = await params.deliveryId
+      return { deliveryId }
     }
   }
 </script>

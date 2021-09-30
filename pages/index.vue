@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul v-for="blog in blogs.responses" :key="blog.content._meta.deliveryKey">
-      <NuxtLink :to="`${blog.content._meta.name}`">
+      <NuxtLink :to="`${blog.content._meta.deliveryId}`">
         <li>{{ blog.content._meta.name }}</li>
       </NuxtLink>
     </ul>

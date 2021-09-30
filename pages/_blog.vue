@@ -39,7 +39,7 @@ export default {
     .then(res => res.responses)
 
     const filteredBlog = blogs.filter(
-      (blog) => blog.content._meta.name === params.blog)
+      (blog) => blog.content._meta.deliveryId === params.blog)
 
     // console.log("filteredBlog: ",filteredBlog[0])
     if (filteredBlog.length === 1) {
