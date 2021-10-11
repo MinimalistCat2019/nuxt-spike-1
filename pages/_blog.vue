@@ -1,21 +1,17 @@
 <template>
-    <section>
-        <h1>Version 2</h1>
-        <p>Uses Nuxt's asyncData hook to load an array of blog posts from Amplience's Filter endpoint.</p>
-            <div v-for="blog of blogs.responses" :key="blog.content._meta.deliveryKey">
-                <h3>{{blog.content._meta.name}}</h3>
-                <p>Posted on {{blog.content.date}} by 
-                <p v-for="author of blog.content.authors" :key="author._meta.deliveryKey">{{author._meta.name}}</p>
-                </p>
-                <p>{{blog.content.description}}</p>
-            </div>
-    </section>
+  <div>
+    <h1>{{ name }}</h1>
+    <h2>{{ category }}</h2>
+    <p>{{ description }}</p>
+    <NuxtLink to="/">Back to Blogs</NuxtLink>
+  </div>
 </template>
 
 <script>
-    export default {
-        async asyncData({ params, redirect }) {
-            const blogs = await fetch(`${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
+export default {
+  async asyncData({ params, redirect }) {
+    const blogs = await fetch(
+       `${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -40,8 +36,20 @@
             }
     )
     .then((res) => res.json())
+    .then(res => res.responses)
 
-    return {blogs}
+    const filteredBlog = blogs.filter(
+      (blog) => blog.content._meta.deliveryId === params.blog)
+
+    if (filteredBlog.length === 1) {
+      return {
+      name: filteredBlog[0].content._meta.name,
+      category: filteredBlog[0].content.category,
+      description: filteredBlog[0].content.description
+      }
+    } else {
+      redirect('/')
     }
+  }
 }
 </script>

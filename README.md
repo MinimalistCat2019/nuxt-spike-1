@@ -2,8 +2,7 @@
 
 ## App will use the following building/fetching/requesting methods: 
 - SSG
-- SSR 
-- Client side
+
 
 
 

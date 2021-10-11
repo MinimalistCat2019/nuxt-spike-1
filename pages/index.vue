@@ -1,7 +1,8 @@
 <template>
   <div>
-    <ul v-for="blog in blogs" :key="blog.content._meta.deliveryKey">
-      <NuxtLink :to="`/${blog.content._meta.name}`">
+    <p>This page makes use of Nuxt's Dynamic Pages. This site is statically generated, and at build time, we make a request to Amplience's Filter endpoint and a list of available blog posts is populated below, along with the routes to all corresponding blog pages. </p>
+    <ul v-for="blog in blogs.responses" :key="blog.content._meta.deliveryKey">
+      <NuxtLink :to="`${blog.content._meta.deliveryId}`">
         <li>{{ blog.content._meta.name }}</li>
       </NuxtLink>
     </ul>
@@ -9,7 +10,7 @@
 </template>
 <script>
 export default {
-  async asyncData({ params, redirect }) {
+  async asyncData() {
     const blogs = await fetch(
        `${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
                 method: "POST",
@@ -36,7 +37,6 @@ export default {
             }
     )
     .then((res) => res.json())
-    .then(res => res.responses)
     return {blogs}
   }
 }
