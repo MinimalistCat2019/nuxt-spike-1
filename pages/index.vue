@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-  async asyncData({ params, redirect }) {
+  async asyncData() {
     const blogs = await fetch(
        `${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
                 method: "POST",
@@ -36,7 +36,6 @@ export default {
             }
     )
     .then((res) => res.json())
-    // .then(res => res.responses)
     return {blogs}
   }
 }

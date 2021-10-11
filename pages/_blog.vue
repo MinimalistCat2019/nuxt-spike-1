@@ -9,7 +9,6 @@
 <script>
 export default {
   async asyncData({ params, redirect }) {
-    // console.log("params: ", params)
     const blogs = await fetch(
        `${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
                 method: "POST",
@@ -41,7 +40,6 @@ export default {
     const filteredBlog = blogs.filter(
       (blog) => blog.content._meta.deliveryId === params.blog)
 
-    // console.log("filteredBlog: ",filteredBlog[0])
     if (filteredBlog.length === 1) {
       return {
       name: filteredBlog[0].content._meta.name,
