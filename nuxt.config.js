@@ -37,18 +37,10 @@ export default {
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
   ],
-  axios: {
-    // extra config e.g
-    // BaseURL: 'https://link-to-API'
-    baseURL: process.env.BASE_URL,
-    proxy: true
-    // baseURL: 'https://eu-west-1.cdv2.content.amplience-turing.net',
-  },
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/axios'
-  ],
+  generate: {
+    fallback: true
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

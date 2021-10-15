@@ -32,6 +32,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  color: grey;
 }
 
 nav a:hover {
@@ -57,10 +58,16 @@ ul {
   justify-content: center;
   flex-wrap: wrap;
 }
+
 li {
   margin: 0 0.5rem;
   padding: 0.25rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
+  color: #00c58e;
+}
+
+li:hover {
+  color: grey;
 }
 
 nav {

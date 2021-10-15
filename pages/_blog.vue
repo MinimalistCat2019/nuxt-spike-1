@@ -10,7 +10,7 @@
 export default {
   async asyncData({ params, redirect }) {
     const blogs = await fetch(
-       `${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
+       `https://${process.env.NEXT_PUBLIC_AMPLIENCE_DELIVERY_API}/content/filter`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
